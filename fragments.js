@@ -1,0 +1,90 @@
+import {gql} from "apollo-boost";
+
+export const POST_FRAGMENT = gql`
+    fragment PostParts on Post{
+        id
+        location
+        caption
+        user{
+            id
+            username
+            avatar
+        }
+        files{
+            id
+            url
+        }
+        likeCount
+        isLiked
+        comment{
+            id
+            text
+            user{
+                id
+                username
+            }
+        }
+        createdAt
+    }
+`;
+
+export const USER_FRAGMENT = gql`
+    fragment UserParts on User{
+        id
+        avatar
+        username
+        firstName
+        lastName
+        fullName
+        amIFollowing
+        itsMe
+        bio
+        followersCount
+        followingCount
+        following{
+            id
+            avatar
+            username
+            bio
+            amIFollowing
+        }
+        followers{
+            id
+            avatar
+            username
+            bio
+            amIFollowing
+        }
+        posts {
+            id, 
+            files{
+                id
+                url
+            },
+            location,
+            caption,
+            user{
+                id
+                username
+                avatar
+                amIFollowing
+            },
+            comment{
+                id
+                text
+                user{
+                    id
+                    avatar
+                    username
+                }
+                createdAt
+            },
+            isLiked,
+            likeCount,
+            createdAt,
+            updatedAt,
+            commentCount,
+        }
+        postsCount
+    }
+`; 
